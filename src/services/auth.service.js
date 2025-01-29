@@ -1,9 +1,4 @@
-import axios from "axios";
-
-const API_URL = process.env.REACT_APP_BACKEND_URL;
-const HEADERS = {
-    'Content-Type': 'application/json',
-};
+import axiosInstance from "./api";
 
 const saveUserToLocalStorage = (data) => {
     if (data) {
@@ -13,11 +8,11 @@ const saveUserToLocalStorage = (data) => {
 };
 
 const login = (email, password) => {
-    return axios
+    return axiosInstance
         .post(
-            `${API_URL}/api/v1/auth/signin`,
+            "/auth/signin",
             { email, password },
-            { headers: HEADERS })
+            { withCredentials: true})
         .then((response)=> {
             saveUserToLocalStorage(response.data?.data);
             return response.data;
@@ -25,11 +20,11 @@ const login = (email, password) => {
 };
 
 const register = (userDetails) => {
-    return axios
+    return axiosInstance
         .post(
-            `${API_URL}/api/v1/auth/register`,
+            "/auth/register",
             userDetails,
-            { headers: HEADERS })
+            { withCredentials: true})
         .then((response)=> {
             saveUserToLocalStorage(response.data?.data);
             return response.data;
@@ -38,8 +33,8 @@ const register = (userDetails) => {
 
 const logout = () => {
     localStorage.removeItem("user");
-    return axios
-    .post(API_URL + "/api/v1/auth/signout")
+    return axiosInstance
+    .post("/auth/signout")
         .then(response => {
             return response.data;
         })

@@ -1,28 +1,26 @@
-import axios from "axios";
-
-const API_URL = process.env.REACT_APP_BACKEND_URL;
+import axiosInstance from "./api";
 
 const getPublicContent = () => {
-    return axios
-        .get(API_URL + "/api/v1/resources/public")
-        .then(res => {
-            if(res.data){
-                console.log(res.data);
-            }
-        })
+    return axiosInstance.get("/resources/public", { withCredentials: true});
+};
+
+const getUserBoard = () => {
+    return axiosInstance.get("/resources/user", { withCredentials: true});
+};
+
+const getModeratorBoard = () => {
+    return axiosInstance.get("/resources/mod", { withCredentials: true});
+};
+
+const getAdminBoard = () => {
+    return axiosInstance.get("/resources/admin", { withCredentials: true});
+};
+
+const UserService = {
+    getPublicContent,
+    getUserBoard,
+    getModeratorBoard,
+    getAdminBoard,
 }
 
-const addPostAdminContent = () => {
-    return axios
-        .post(API_URL + "/api/v1/resources/admin")
-        .then(res => {
-            if(res.data){
-                console.log(res.data);
-            }
-        })
-}
-
-
-const services = { getPublicContent, addPostAdminContent};
-
-export default services;
+export default UserService;

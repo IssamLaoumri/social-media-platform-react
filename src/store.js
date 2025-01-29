@@ -4,7 +4,7 @@ import {configureStore} from "@reduxjs/toolkit";
 
 const reducer = {
     auth: authReducer,
-    massage: messageReducer
+    message: messageReducer
 }
 
 export const store = configureStore({

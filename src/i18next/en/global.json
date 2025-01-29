@@ -1,0 +1,7 @@
+{
+  "login":{
+    "header": "Login",
+    "email": "Email address",
+    "password": "Password"
+  }
+}
