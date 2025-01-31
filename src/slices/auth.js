@@ -69,6 +69,22 @@ export const logout = createAsyncThunk(
     }
 )
 
+export const csrfToken = createAsyncThunk(
+    "auth/csrf-token",
+    async()=> {
+        try {
+            const response = await AuthService.fetchCsrfToken();
+            return response.token;
+        } catch (error) {
+            const message =
+                (error.response && error.response.data && error.response.data.error) ||
+                error.message ||
+                error.toString();
+            console.log(message);
+        }
+    }
+)
+
 const initialState = user ?
     {isLoggedIn: true, user} :
     {isLoggedIn: false, user: null};

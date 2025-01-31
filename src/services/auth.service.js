@@ -40,9 +40,19 @@ const logout = () => {
         })
 }
 
+const fetchCsrfToken = () => {
+    return axiosInstance.get("auth/csrf-token", { withCredentials: true })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error("Failed to fetch CSRF token:", error);
+        });
+}
+
 const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
-const services = { login, register, logout, getCurrentUser };
+const services = { login, register, logout, getCurrentUser, fetchCsrfToken };
 export default services;

@@ -38,7 +38,7 @@ root.render(
 );
 
 console.log("Calling setupInterceptors...");
-setupInterceptors();
+setupInterceptors(store);
 
 
 

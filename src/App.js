@@ -12,6 +12,7 @@ import {logout} from "./slices/auth";
 import {useDispatch, useSelector} from "react-redux";
 import BoardUser from "./components/boards/BoardUser";
 import BoardAdmin from "./components/boards/BoardAdmin";
+import PostForm from "./components/form/PostForm";
 function App() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -79,6 +80,11 @@ function App() {
                     </Link>
                   </li>
                   <li className="nav-item">
+                    <a href="/post" className="nav-link">
+                      Create post
+                    </a>
+                  </li>
+                  <li className="nav-item">
                     <a href="/login" className="nav-link" onClick={logOut}>
                       LogOut
                     </a>
@@ -88,7 +94,7 @@ function App() {
                 <div className="navbar-nav ml-auto">
                   <li className="nav-item">
                     <Link to={"/login"} className="nav-link">
-                      Login
+                    Login
                     </Link>
                   </li>
 
@@ -109,6 +115,7 @@ function App() {
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/user" element={<BoardUser/>}/>
               <Route path="/admin" element={<BoardAdmin/>}/>
+              <Route path="/post" element={<PostForm/>}/>
             </Routes>
           </div>
         </div>
